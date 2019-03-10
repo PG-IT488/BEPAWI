@@ -109,6 +109,7 @@ public class AdminMenu extends JFrame {
 			}
 		});
 		btnMngInv.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
