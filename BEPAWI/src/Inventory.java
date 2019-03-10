@@ -195,16 +195,6 @@ public class Inventory extends JFrame {
 		btnSearchType.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		
-		JButton btnAddNewProducts = new JButton("Add New Products");
-		btnAddNewProducts.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InventoryManagementPage invmp = new InventoryManagementPage();
-				invmp.setVisible(true);
-			}
-		});
-		btnAddNewProducts.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		
-		
 		
 		
 		
@@ -223,8 +213,7 @@ public class Inventory extends JFrame {
 						.addComponent(SearchPriceField, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnSearchPrice, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(SearchTypeField, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnSearchType, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddNewProducts, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnSearchType, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE))
 		);
@@ -248,8 +237,7 @@ public class Inventory extends JFrame {
 							.addComponent(SearchTypeField, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnSearchType, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-							.addGap(352)
-							.addComponent(btnAddNewProducts, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+							.addGap(411))
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE))
 					.addGap(16))
 		);

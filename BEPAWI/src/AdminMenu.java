@@ -100,16 +100,27 @@ public class AdminMenu extends JFrame {
 			}
 		});
 		btnClients.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JButton btnMngInv = new JButton("Mng. Inv. ");
+		btnMngInv.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InventoryManagementPage invmp = new InventoryManagementPage();
+				invmp.setVisible(true);
+			}
+		});
+		btnMngInv.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(label, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+				.addComponent(label, GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(57)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnInventory, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnOrders, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnMngInv, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(btnInventory, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+							.addComponent(btnOrders, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
+					.addPreferredGap(ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnClients, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnInvoices, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
@@ -127,7 +138,9 @@ public class AdminMenu extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnOrders, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnClients, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(217, Short.MAX_VALUE))
+					.addGap(27)
+					.addComponent(btnMngInv, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(147, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
