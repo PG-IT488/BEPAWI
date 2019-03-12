@@ -103,7 +103,7 @@ public class AdminMenu extends JFrame {
 		
 		JButton btnMngInv = new JButton("Mng. Inv. ");
 		btnMngInv.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				InventoryManagementPage invmp = new InventoryManagementPage();
 				invmp.setVisible(true);
 			}

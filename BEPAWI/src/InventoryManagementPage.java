@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -33,16 +34,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 
 public class InventoryManagementPage extends JFrame {
-
+	
+	private JPanel contentPane;
+	
 	Connection connection = null;
 	Statement statement = null;
 	ResultSet resultSet = null;
-	
-	private JPanel contentPane;
-	public static final String DATABASE_URL = "jdbc:sqlserver://bepawidatabase.csnb6xcefqki.us-east-1.rds.amazonaws.com:1433;database=BEPAWI";
-	public static String UserName = null;
-	public static String Password = null;
-	
+	private JTable table;
 	
 	private JTextField UpdatePcodeText;
 	private JTextField AddPcodeText;
@@ -57,10 +55,6 @@ public class InventoryManagementPage extends JFrame {
 	private JTextField UpdtPpriceText;
 	private JTextField AddPpriceText;
 	
-	
-
-	public PreparedStatement pst = null;
-	public ResultSet rs = null;
 	
 	/**
 	 * Launch the application.
@@ -130,9 +124,17 @@ public class InventoryManagementPage extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JButton btnUpdatePrdct = new JButton("Enter");
+		btnUpdatePrdct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnUpdatePrdct.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JButton btnAddNewPrdct = new JButton("Enter");
+		btnAddNewPrdct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAddNewPrdct.setFont(new Font("Tahoma", Font.BOLD, 20));
 		
 		JLabel lblProductDescription = new JLabel("Description:");
@@ -196,74 +198,53 @@ public class InventoryManagementPage extends JFrame {
 		AddPpriceText.setColumns(10);
 		
 		JButton btnViewInvt = new JButton("View Inventory");
-		btnViewInvt.setFont(new Font("Tahoma", Font.BOLD, 16));
-		
-		
-		
-		JComboBox LocationcomboBox = new JComboBox();
-		 {
-			 
-			 
-			 
-			 String sql ="Select Location_Name FROM Product_location";
-			 
-			 try 
-			 {
-				 connection = DriverManager.getConnection(AdminMenu.DATABASE_URL, AdminMenu.UserName, AdminMenu.Password);
-				 Statement s= connection.prepareStatement(sql);
-				 resultSet = rs=s.executeQuery(sql);
-				 
-				 while(rs.next())
-				{
-					 String name=rs.getString(1);
-					 LocationcomboBox.addItem(name);
-				}
-				 
-				 //return LocationcomboBox;
-			 }
-			 catch(SQLException sqlException) {
-					JOptionPane.showMessageDialog(null, "User does not have access to this table");
-				}
-		 }
-		 
-		 /*LocationcomboBox.addActionListener(new ActionListener(){
+		btnViewInvt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					//String sql="select * from Product_Location where Location_Name=?";
-					
-					
 					connection = DriverManager.getConnection(AdminMenu.DATABASE_URL, AdminMenu.UserName, AdminMenu.Password);
-					statement = connection.createStatement();
-					resultSet = statement.executeQuery("select * from Product_Location"); 
 					
-									
-					while (resultSet.next()) {
-						String name=resultSet.getString("Location_Name");
-						LocationcomboBox.addItem(resultSet.getString("name"));
-					}
+					statement = connection.createStatement();
+					
+					resultSet = statement.executeQuery("Select * From dbo.Products;");
+					
+					table.setModel(DbUtils.resultSetToTableModel(resultSet));
+					table.setRowHeight(30);
+					
 				}
 				catch(SQLException sqlException) {
 					JOptionPane.showMessageDialog(null, "User does not have access to this table");
 				}
 			}
-			
-			public void updateCombo() {
-				String sql = "select * from Product_Location";
-				try {
-					pst = connection.prepareStatement (sql);
-					rs = pst.executeQuery();
-					while (rs.next()) {
-						LocationcomboBox.addItem(rs.getString("Location_Name"));
-					}
-					}
-					catch (Exception e) {
-						
-				}
-			}
-			
-		}); */
+		});
+		btnViewInvt.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		table = new JTable();
+		table.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		scrollPane.setViewportView(table);
 		
 		
+		
+		JComboBox LocationcomboBox = new JComboBox();
+		 {
+			try {  
+		 			connection = DriverManager.getConnection(AdminMenu.DATABASE_URL, AdminMenu.UserName, AdminMenu.Password); 
+		 		
+					Statement st = connection.createStatement();
+
+					ResultSet r=st.executeQuery("Select * From dbo.Product_location;");
+		 			
+
+		 			while (r.next()) {  
+
+		 				LocationcomboBox.addItem(r.getString("Location_Name"));  
+		 			}
+
+
+		 			connection.close();
+		 	} catch (Exception e) {  
+		 		JOptionPane.showMessageDialog(null,"Failed to Connect to Database","Error Connection", JOptionPane.WARNING_MESSAGE);  
+		 	}  
+
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -397,4 +378,5 @@ public class InventoryManagementPage extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+}
 }
