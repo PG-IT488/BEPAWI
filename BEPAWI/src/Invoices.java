@@ -70,8 +70,8 @@ public class Invoices extends JFrame {
 		contentPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.BLUE));
 		setContentPane(contentPane);
 		
-		JLabel label = new JLabel("BEPAWI");
-		//label.setIcon(new ImageIcon(Invoices.class.getResource("/javax/swing/plaf/basic/icons/image-delayed.png")));
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Invoices.class.getResource("/images/BEPAWI LOGO.PNG")));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("Tahoma", Font.BOLD, 32));
@@ -86,7 +86,7 @@ public class Invoices extends JFrame {
 					
 					statement = connection.createStatement();
 					
-					resultSet = statement.executeQuery("Select * From dbo.Orders;");
+					resultSet = statement.executeQuery("Select * From dbo.Invoice;");
 					
 					table.setModel(DbUtils.resultSetToTableModel(resultSet));
 					table.setRowHeight(30);
@@ -112,7 +112,9 @@ public class Invoices extends JFrame {
 					
 					statement = connection.createStatement();
 					
-					resultSet = statement.executeQuery("Select * From dbo.Orders Where Order_ID like '%" + SearchClID + "%';");
+					resultSet = statement.executeQuery("SELECT Orders.Client_ID, Orders.Order_ID, products.Product_name, Invoice.Product_sum FROM "
+					+ "Invoice Inner Join Orders ON Invoice.Order_ID=Orders.Order_ID Inner Join Products ON Invoice.Product_Code=Products.Product_code "
+					+ "Where Orders.client_id = '" + SearchClID + "';");
 					
 					table.setModel(DbUtils.resultSetToTableModel(resultSet));
 					table.setRowHeight(30);
@@ -141,7 +143,7 @@ public class Invoices extends JFrame {
 					
 					statement = connection.createStatement();
 					
-					resultSet = statement.executeQuery("Select * From dbo.Orders Where Order_ID like '%" + SearchOrID + "%';");
+					resultSet = statement.executeQuery("Select * From dbo.Invoice Where Order_ID like '%" + SearchOrID + "%';");
 					
 					table.setModel(DbUtils.resultSetToTableModel(resultSet));
 					table.setRowHeight(30);

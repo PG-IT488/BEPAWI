@@ -29,7 +29,6 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.ImageIcon;
-import javax.swing.JScrollBar;
 
 public class Clients extends JFrame {
 
@@ -61,7 +60,6 @@ public class Clients extends JFrame {
 	public String Ctry = null;
 	public String PhNum = null;
 	public String Ema = null;
-	private final JScrollPane scrollPane_1 = new JScrollPane();
 	
 	/**
 	 * Launch the application.
@@ -91,8 +89,8 @@ public class Clients extends JFrame {
 		contentPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.BLUE));
 		setContentPane(contentPane);
 		
-		JLabel label = new JLabel("BEPAWI");
-		//label.setIcon(new ImageIcon(Clients.class.getResource("/javax/swing/plaf/basic/icons/image-delayed.png")));
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(Clients.class.getResource("/images/BEPAWI LOGO.PNG")));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("Tahoma", Font.BOLD, 32));
@@ -162,8 +160,8 @@ public class Clients extends JFrame {
 					
 					statement = connection.createStatement();
 					
-					resultSet = statement.executeQuery("Insert into client(First_Name, Last_Name, Company_Name, Street_Address, city, State_Region, Client_Zip, Country, Phone_Number, Email)" + 
-							"Values ('" + FName + "', '" + LName + "', '" + CompName + "', '" + Adr + "', '" + Cty + "', '" + Regn + "', '" + PostC + "', '" + Ctry + "', '" + PhNum + "','" + Ema + "');");
+					resultSetInt = statement.executeUpdate("Insert into client(First_Name, Last_Name, Company_Name, Street_Address, city, State_Region, Client_Zip, Country, Phone_Number, Email)" + 
+					"Values ('" + FName + "', '" + LName + "', '" + CompName + "', '" + Adr + "', '" + Cty + "', '" + Regn + "', '" + PostC + "', '" + Ctry + "', '" + PhNum + "','" + Ema + "');");
 					
 					resultSet = statement.executeQuery("Select * From dbo.Client;"); 
 					
@@ -290,140 +288,138 @@ public class Clients extends JFrame {
 		Email.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		Email.setColumns(10);
 		
-			
-		JButton btnClear = new JButton("Clear");
-		btnClear.addActionListener(new ActionListener() {
-			   public void actionPerformed(ActionEvent e) {
-			    ClientID.setText(" ");
-			    FirstName.setText(" ");
-			    LastName.setText(" ");
-			    CompanyName.setText(" ");
-			    Address.setText(" ");
-			    City.setText(" ");
-			    Region.setText(" ");
-			    PostalCode.setText(" ");
-			    Country.setText(" ");
-			    PhoneNumber.setText(" ");
-			    Email.setText(" ");
-			   }
-			  });
-		btnClear.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		 	
+		JButton btnClearForm = new JButton("Clear Form");
+		btnClearForm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ClientID.setText("");
+			    FirstName.setText("");
+			    LastName.setText("");
+			    CompanyName.setText("");
+			    Address.setText("");
+			    City.setText("");
+			    Region.setText("");
+			    PostalCode.setText("");
+			    Country.setText("");
+			    PhoneNumber.setText("");
+			    Email.setText("");
+			}
+		});
+		btnClearForm.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(label, GroupLayout.DEFAULT_SIZE, 1260, Short.MAX_VALUE)
+				.addComponent(label, GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblClientId)
-						.addComponent(ClientID, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+						.addComponent(ClientID, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCompanyName, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(FirstName, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+						.addComponent(FirstName, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblContactName, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(LastName, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+						.addComponent(LastName, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblContactTitle, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(CompanyName, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+						.addComponent(CompanyName, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblStreetAddress, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
 						.addComponent(Address, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCity, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(City, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+						.addComponent(City, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblStateOrRegion, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Region, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+						.addComponent(Region, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPostalCode, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(PostalCode, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+						.addComponent(PostalCode, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
 					.addGap(31)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnSearchClientInfo, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblCountry, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Country, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
-					.addGap(90)
+						.addComponent(Country, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnUpdateClientInfo, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPhoneNumber, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(PhoneNumber, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
-					.addGap(90)
+						.addComponent(PhoneNumber, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnUpdateClientInfo, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(Email, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-						.addComponent(lblFaxNumber, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddClient, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
-					.addGap(28)
-					.addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
-					.addGap(81))
+						.addComponent(Email, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnAddClient, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnClearForm, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblFaxNumber, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE))
+					.addGap(73))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(label, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+					.addComponent(label, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(11)
-							.addComponent(lblClientId, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(lblClientId, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(ClientID, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(ClientID, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblCompanyName, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(lblCompanyName, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(FirstName, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(FirstName, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblContactName, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(lblContactName, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(LastName, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(LastName, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(lblContactTitle, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(lblContactTitle, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(CompanyName, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(CompanyName, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(lblStreetAddress, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(lblStreetAddress, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Address, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(Address, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(lblCity, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(lblCity, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(City, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(City, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(lblStateOrRegion, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+							.addComponent(lblStateOrRegion, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(Region, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(Region, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addGap(18)
-							.addComponent(lblPostalCode, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+							.addComponent(lblPostalCode, GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(PostalCode, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+							.addComponent(PostalCode, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
 							.addGap(1))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
-							.addGap(9)))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblCountry, GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-						.addComponent(lblPhoneNumber)
-						.addComponent(lblFaxNumber))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(Country, GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 742, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(PhoneNumber, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-							.addGap(9))
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+									.addComponent(lblCountry, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(lblPhoneNumber))
+								.addComponent(lblFaxNumber))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(Country, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+								.addComponent(PhoneNumber, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Email, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+							.addGap(36)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnSearchClientInfo, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnUpdateClientInfo, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(Email, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-							.addGap(9)))
-					.addGap(36)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnSearchClientInfo, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-						.addComponent(btnAddClient, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-						.addComponent(btnUpdateClientInfo, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-						.addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnAddClient, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnClearForm, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap())
 		);
 		
-		  		
 		table = new JTable();
 		table.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		scrollPane.setViewportView(table);
-		scrollPane.setColumnHeaderView(scrollPane_1);
 		contentPane.setLayout(gl_contentPane);
 		table.setRowHeight(1, 30);
 	}

@@ -33,9 +33,7 @@ public class Login extends JFrame {
 	private JTextField UserNameField;
 	private JPasswordField passwordField;
 
-	public static final String DATABASE_URL = "jdbc:sqlserver://bepawidatabase.csnb6xcefqki.us-east-1.rds.amazonaws.com:1433;database=BEPAWI";
-	
-	
+	public static final String DATABASE_URL = "jdbc:sqlserver://bepawidatabase.csnb6xcefqki.us-east-1.rds.amazonaws.com;database=BEPAWI";
 	public String UserName = null;
 	public String Password = null;
 	public int fails = 0;
@@ -70,12 +68,12 @@ public class Login extends JFrame {
 		contentPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.BLUE));
 		setContentPane(contentPane);
 		
-		JLabel lblBepawi = new JLabel("BEPAWI");
+		JLabel lblBepawi = new JLabel("");
+		lblBepawi.setIcon(new ImageIcon(Login.class.getResource("/images/BEPAWI LOGO.PNG")));
 		lblBepawi.setBorder(new MatteBorder(0, 0, 4, 0, (Color) Color.BLUE));
 		lblBepawi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBepawi.setForeground(new Color(0, 0, 0));
 		lblBepawi.setBackground(Color.BLUE);
-		//lblBepawi.setIcon(new ImageIcon(Login.class.getResource("/javax/swing/plaf/basic/icons/image-delayed.png")));
 		lblBepawi.setFont(new Font("Tahoma", Font.BOLD, 32));
 		
 		UserNameField = new JTextField();
@@ -101,16 +99,6 @@ public class Login extends JFrame {
 					AdminMenu.Password = passwordField.getText();
 					if(UserName.length()< 20 && Password.length() < 20){
 						connection = DriverManager.getConnection(DATABASE_URL, UserName, Password);
-						//connection = DriverManager.getConnection(DATABASE_URL, UserName, Password);
-						
-						
-						statement = connection.createStatement();
-						
-						resultSet = statement.executeQuery("Select * From dbo.Users;");
-						
-						
-						
-						JOptionPane.showMessageDialog(null, "Valid User Name and Password");
 						AdminMenu aMenu = new AdminMenu();
 						aMenu.setVisible(true);
 						dispose();
